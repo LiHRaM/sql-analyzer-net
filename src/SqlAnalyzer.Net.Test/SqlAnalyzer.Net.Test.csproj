@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestData\DapperAvailableConstructorAnalyzer\AvailableExplicitConstructor.cs" />
+    <Compile Remove="TestData\DapperAvailableConstructorAnalyzer\AvailableImplicitConstructor.cs" />
+    <Compile Remove="TestData\DapperAvailableConstructorAnalyzer\NoAvailableConstructor.cs" />
     <Compile Remove="TestData\DapperParametersMatchingAnalyzer\InlineSqlDeclaredVariableParameters.cs" />
     <Compile Remove="TestData\DapperParametersMatchingAnalyzer\InlineSqlDynamicParameters.cs" />
     <Compile Remove="TestData\DapperParametersMatchingAnalyzer\InlineSqlDynamicParametersWithConstructor.cs" />
@@ -36,6 +39,12 @@
     <Compile Remove="TestData\SqlCommandParametersMatchingAnalyzer\MultipleInlineSqlMatchedParameters.cs" />
     <Compile Remove="TestData\SqlCommandParametersMatchingAnalyzer\StoredProcedureUnmatchedParameters.cs" />
     <Compile Remove="TestData\StoredProcedureWithStringArgumentTestData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\DapperAvailableConstructorAnalyzer\AvailableImplicitConstructor.cs" />
+    <EmbeddedResource Include="TestData\DapperAvailableConstructorAnalyzer\AvailableExplicitConstructor.cs" />
+    <EmbeddedResource Include="TestData\DapperAvailableConstructorAnalyzer\NoAvailableConstructor.cs" />
   </ItemGroup>
 
   <ItemGroup>

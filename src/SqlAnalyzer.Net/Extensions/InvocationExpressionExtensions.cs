@@ -1,10 +1,25 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace SqlAnalyzer.Net.Extensions
 {
     public static class InvocationExpressionExtensions
     {
+        public static bool IsDapperGenericSqlMethod(this InvocationExpressionSyntax invocationExpressionSyntax, SemanticModel semanticModel)
+        {
+            var methodSymbol = semanticModel.GetSymbolInfo(invocationExpressionSyntax).Symbol as IMethodSymbol;
+            if (methodSymbol == null || !methodSymbol.IsDapperMethod(semanticModel))
+            {
+                return false;
+            }
+
+            return invocationExpressionSyntax.Expression is MemberAccessExpressionSyntax expression
+                && expression.ChildNodes().Any(node => node is GenericNameSyntax);
+        }
+
+
         public static bool IsDapperInlineSqlMethod(this InvocationExpressionSyntax invocationExpressionSyntax, SemanticModel semanticModel)
         {
             var methodSymbol = semanticModel.GetSymbolInfo(invocationExpressionSyntax).Symbol as IMethodSymbol;
